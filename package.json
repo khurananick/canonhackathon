@@ -1,0 +1,41 @@
+{
+  "name": "PortHackApp",
+  "version": "0.0.1",
+  "author": "Nick",
+  "description": "Service",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bluebird": "3.1.5",
+    "body-parser": "1.14.1",
+    "chokidar": "1.4.3",
+    "cookie-parser": "1.4.1",
+    "cors": "2.7.1",
+    "csco-spark": "^3.2.0",
+    "express": "4.13.3",
+    "express-useragent": "",
+    "fs-extra": "0.28.0",
+    "http-proxy": "1.12.0",
+    "jade": "1.11.0",
+    "mocha": "2.3.4",
+    "moment-timezone": "0.5.3",
+    "multiparty": "4.1.2",
+    "mysql": "2.9.0",
+    "promise-mysql": "1.3.1",
+    "request": "2.67.0",
+    "supertest": "1.1.0",
+    "tropo-webapi-node": "1.0.6",
+    "twilio": "3.3.0-edge",
+    "excel-parser":"0.2.2",
+    "csv":"1.1.0",
+    "fast-csv":"2.3.0",
+    "nodemailer":"2.7.0",
+    "sendmail":"1.1.1"
+  },
+  "license": "BSD2",
+  "engines": {
+    "node": ">=0.8"
+  }
+}
