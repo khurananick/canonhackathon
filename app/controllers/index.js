@@ -52,14 +52,16 @@ module.exports = function(router) {
 
   router.get("/marketplace", function(req, res) {
       var filters = req.query.filters;
+      var min = req.query.min;
       if(filters) {
         req.DB.query("select * from images", function(error, rows) {
-          var filtered = [];
+          var filtered = {};
           for(var key in rows) {
             var meta = JSON.parse(rows[key].metadata);
             for(var key2 in meta) {
-              if(filters.match(key2)) {
-                filtered.push(rows[key]);
+              if(key2.match(filters)) {
+                if(Math.round(meta[key2]*100) >= Number(min))
+                  filtered[rows[key].id] = rows[key];
               }
             }
           }
