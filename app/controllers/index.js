@@ -51,7 +51,25 @@ module.exports = function(router) {
   });
 
   router.get("/marketplace", function(req, res) {
-    return res.render("Marketplace", { title: 'Marketplace' });
+      var filters = req.query.filters;
+      if(filters) {
+        req.DB.query("select * from images", function(error, rows) {
+          var filtered = [];
+          for(var key in rows) {
+            var meta = JSON.parse(rows[key].metadata);
+            for(var key2 in meta) {
+              if(filters.match(key2)) {
+                filtered.push(rows[key]);
+              }
+            }
+          }
+          return res.render("Marketplace", { title: 'Marketplace', rows: filtered });
+        });
+      } else {
+        req.DB.query("select * from images", function(error, rows) {
+          return res.render("Marketplace", { title: 'Marketplace', rows: rows });
+        });
+      }
   });
 
   router.get("/convert", function(req, res) {

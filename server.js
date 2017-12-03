@@ -4,7 +4,6 @@ var mysql     = require('promise-mysql');
 var bodyParser= require('body-parser');
 var cookieParser = require('cookie-parser');
 var fs        = require('fs');
-var apiKeys = require('./app/secret/apiKeys.js');
 var request = require('request');
 
 var base_url = (function() {
