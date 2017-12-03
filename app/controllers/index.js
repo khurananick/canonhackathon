@@ -51,7 +51,9 @@ module.exports = function(router) {
   });
 
   router.get("/gallery", function(req,res) {
-    
+    req.DB.query("select * from images", function(error, rows) {
+      return res.render("Gallery", { title: 'Gallery', rows: rows });
+    });
   });
 
   router.get("/marketplace", function(req, res) {
