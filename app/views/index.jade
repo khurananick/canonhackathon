@@ -1,6 +1,30 @@
 extend layout
 block content
+  style.
+    .gridly {
+      position: relative;
+      width: 960px;
+    }
+    .brick.small {
+      width: 140px;
+      height: 140px;
+    }
+    .brick.large {
+      width: 300px;
+      height: 300px;
+    }
   div(class="row")
     div(class="col-md-6 col-md-offset-3 text-center")
-      h1 Get Hackin' Yo!
-      //a(class="btn btn-primary btn-lg" href="/upload/manifest") Upload New Manifest
+  div(class="gridly")
+    div(class="brick small")
+    div(class="brick small")
+    div(class="brick large")
+    div(class="brick small")
+    div(class="brick small")
+    div(class="brick large")
+  script.
+    $('.gridly').gridly({
+      base: 60, // px 
+      gutter: 20, // px
+      columns: 12
+    });

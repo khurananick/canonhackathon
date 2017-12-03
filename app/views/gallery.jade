@@ -1,0 +1,52 @@
+extend layout
+block content
+  div(class="row")
+    div(class="col-md-12")
+      div(class="row")
+        div(class="col-md-5")
+          div(class="form")
+            div(class="form-group")
+              select(id="filter-select" class="form-control")
+                option(value="motorbike") Motorbike
+                if locals.filter
+                  option(value="#{locals.filter}" selected="selected") #{locals.filter.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()})}
+        div(class="col-md-3")
+          div(class="form")
+            div(class="form-group")
+              select(id="filter-minimum" class="form-control")
+                option(value="98") 98
+                option(value="90") 95
+                option(value="90") 90
+                if locals.min
+                  option(value="#{locals.min}" selected="selected") #{locals.min}
+        div(class="col-md-4 text-center")
+          div(class="form")
+            div(class="form-group")
+              button(id="filter" class="btn btn-primary") Filter
+      each image in locals.rows
+        div(class="panel panel-default")
+          div(class="panel-body")
+            div(class="row")
+              div(class="col-sm-8 text-center")
+                img(src="#{image.base64}" width="450px")
+              div(class="col-sm-4 text-center")
+                div(style="margin-bottom:5px;")
+                  p
+                    b Commercial Use License
+                  div(class="btn-group" role="group" aria-label="...")
+                    button(type="button" class="btn btn-default") Medium
+                    button(type="button" class="btn btn-default") Large
+                    button(type="button" class="btn btn-default") X-Large
+                div(style="margin-bottom:5px;")
+                  button(class="btn btn-lg btn-success")
+                    | BUY NOW
+                    span(class="badge" style="margin-left:5px;") $50.00
+                hr
+                div(class="text-center" style="margin-bottom:5px;")
+                  button(class="btn btn-default" style="margin-right:2px;") Like
+                  button(class="btn btn-default" style="margin-right:2px;") Share
+          div(class="panel-footer text-center")
+            each key, value in JSON.parse(image.metadata)
+              a(class="btn btn-default" type="button" style="margin:5px;" href="http://localhost:8080/marketplace?filters="+value+"&min="+Math.round(Number(key)*100))
+                | #{value.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()})}
+                span(class="badge" style="margin-left:2px;") #{Math.round(Number(key)*100)}%

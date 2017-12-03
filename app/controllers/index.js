@@ -50,6 +50,10 @@ module.exports = function(router) {
     });
   });
 
+  router.get("/gallery", function(req,res) {
+    
+  });
+
   router.get("/marketplace", function(req, res) {
       var filters = req.query.filters;
       var min = req.query.min || 98;
