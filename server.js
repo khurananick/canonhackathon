@@ -22,7 +22,7 @@ var DB = (function() {
     if(process.env.PRODUCTION)
       return {};
     else
-      return { host: 'localhost', user: 'root', password: 'password', database: 'canonhackathon' };
+      return { host: 'localhost', user: 'pinny', password: 'uin', database: 'canonhackathon' };
   })();
   creds.connectionLimit = 1;
   return mysql.createPool(creds);
