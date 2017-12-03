@@ -52,9 +52,9 @@ module.exports = function(router) {
 
   router.get("/marketplace", function(req, res) {
       var filters = req.query.filters;
-      var min = req.query.min;
+      var min = req.query.min || 98;
       if(filters) {
-        req.DB.query("select * from images", function(error, rows) {
+        req.DB.query("select * from images order by id desc", function(error, rows) {
           var filtered = {};
           for(var key in rows) {
             var meta = JSON.parse(rows[key].metadata);
@@ -65,11 +65,11 @@ module.exports = function(router) {
               }
             }
           }
-          return res.render("Marketplace", { title: 'Marketplace', rows: filtered });
+          return res.render("Marketplace", { title: 'Marketplace', rows: filtered, min: min, filter: filters });
         });
       } else {
-        req.DB.query("select * from images", function(error, rows) {
-          return res.render("Marketplace", { title: 'Marketplace', rows: rows });
+        req.DB.query("select * from images order by id desc", function(error, rows) {
+          return res.render("Marketplace", { title: 'Marketplace', rows: rows, min: min });
         });
       }
   });
@@ -80,7 +80,7 @@ module.exports = function(router) {
     var path;
 
     fs.readdirSync(dir).forEach(function(file) {
-      if(file.match("JPG")) {
+      if(file.match("jpg")) {
         var filepath = "/Library/WebServer/Documents/canonhack/temp/" + file;
         var bitmap = fs.readFileSync(filepath);
         var buffer = new Buffer(bitmap).toString('base64');

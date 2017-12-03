@@ -15,6 +15,7 @@
 /log/*
 !/log/.keep
 /tmp
+/done
 /node_modules/*
 .idea
 app/secret/apiKeys.js
